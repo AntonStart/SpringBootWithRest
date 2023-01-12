@@ -1,6 +1,7 @@
 package ge.pozdniakov.springrestapp.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 import java.util.Objects;
 
@@ -14,12 +15,18 @@ public class Person {
     private int id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Name Should not be Empty")
+    @Size(min = 6, max = 50, message = "Name should be between 6 and 50 characters")
     private String name;
 
     @Column(name = "age")
+    @Min(value = 0, message = "Age should be greater than 0")
+    @Max(value = 125)
     private int age;
 
     @Column(name = "email")
+    @Email(message = "This is an Email, you make mistake")
+    @NotEmpty(message = "Email Should not be Empty")
     private String email;
 
     public Person() {
